@@ -3,11 +3,10 @@
   <form [formGroup]="myForm" (ngSubmit)="submit()">
     <p>
       <label>Account:</label>
-      <input type="text" id="account" formControlName="account">
+      <input type="text" id="account" formControlName="account" required>
     </p>
     
-    <div *ngIf="account.invalid && (account.dirty || account.touched)"
-        class="alert alert-danger">
+    <div *ngIf="account.invalid && (account.dirty || account.touched)" class="alert">
       <ng-container *ngIf="account.errors?.['required']">
         Account is required.
       </ng-container>
@@ -15,13 +14,24 @@
         Account must be at least 4 characters long.
       </ng-container>
       <ng-container *ngIf="account.errors?.['forbiddenName']">
-        Account cannot be Bob.
+        Account cannot begin with admin.
       </ng-container>
     </div>
 
     <p>
       <label>Password:</label>
-      <input type="password" formControlName="password">
+      <input type="password" formControlName="password" required>
+    </p>
+
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert">
+      <ng-container *ngIf="password.errors?.['required']">
+        Password is required.
+      </ng-container>
+      <ng-container *ngIf="password.errors?.['minlength']">
+        Password must be at least 6 characters long.
+      </ng-container>
+    </div>
+
     <p>
       <button type="submit" [disabled]="myForm.invalid">Submit</button>
     </p>
