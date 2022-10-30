@@ -1,0 +1,18 @@
+<section>
+  <h2>Template Driven Form</h2>
+  <form #myForm="ngForm" (ngSubmit)="submit()">
+    <p>
+      <label>Account:</label>
+      <input type="text" [(ngModel)]="user.account" name="account" required>
+    </p>
+
+    <p>
+      <label>Password:</label>
+      <input type="password" [(ngModel)]="user.password" name="password" required>
+    </p>
+    
+    <p>
+      <button type="submit" [disabled]="myForm.invalid">Submit</button>
+    </p>
+  </form>
+</section>
