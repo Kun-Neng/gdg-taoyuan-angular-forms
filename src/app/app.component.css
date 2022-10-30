@@ -1,3 +1,18 @@
-p {
-  font-family: Lato;
+a {
+  margin: 0 5px;
+  padding: 5px;
+  color: darkgray;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: gray;
+  color: white;
+}
+
+.active {
+  color: black;
+  font-weight: bold;
+  border-bottom: 2px solid red;
 }
