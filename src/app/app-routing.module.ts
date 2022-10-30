@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-const routes: Route[] = [
+const routes: Routes = [
   {
     path: 'template-driven-form',
     loadChildren: () => import('./template-driven-form/template-driven-form.module').then(m => m.TemplateDrivenFormModule)
