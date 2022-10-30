@@ -1,0 +1,14 @@
+.container {
+  margin: 1rem;
+  border: 1px solid black;
+  border-radius: 1rem;
+}
+
+.tuner {
+  margin: 1rem;
+}
+
+input {
+  width: 85%;
+  margin: 0.5rem;
+}

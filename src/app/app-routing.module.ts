@@ -11,6 +11,10 @@ const routes: Routes = [
     loadChildren: () => import('./reactive-form/reactive-form.module').then(m => m.ReactiveFormModule)
   },
   {
+    path: 'digital-mixer',
+    loadChildren: () => import('./use-cases/digital-mixer/digital-mixer.module').then(m => m.DigitalMixerModule)
+  },
+  {
     path: '', redirectTo: 'reactive-form', pathMatch: 'full'
   }
 ];
