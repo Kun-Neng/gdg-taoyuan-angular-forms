@@ -3,7 +3,7 @@
   <form [formGroup]="myForm" (ngSubmit)="submit()">
     <p>
       <label>Account:</label>
-      <input type="text" id="account" formControlName="account" required>
+      <input type="text" formControlName="account" required>
     </p>
     
     <div *ngIf="account.invalid && (account.dirty || account.touched)" class="alert">
