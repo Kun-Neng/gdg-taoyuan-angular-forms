@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { map, filter } from 'rxjs/operators';
 import { forbiddenNameValidator } from './forbidden-name.directive';
 
 interface LoginForm {
@@ -19,7 +20,7 @@ export class ReactiveFormComponent implements OnInit {
       Validators.minLength(4),
       forbiddenNameValidator(/admin/i)
     ]),
-    password: new FormControl('', [
+    password: new FormControl('devfest', [
       Validators.required,
       Validators.minLength(6)
     ])
@@ -44,7 +45,16 @@ export class ReactiveFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.myForm.valueChanges
+      .pipe(
+        map((value) => value.account.toUpperCase()),
+        filter(() => this.myForm.valid)
+      )
+      .subscribe((value) => {
+        console.log(`Deal with valid form value: ${JSON.stringify(value)}`);
+      });
+  }
 
   submit() {
     console.log(this.myForm.value);
