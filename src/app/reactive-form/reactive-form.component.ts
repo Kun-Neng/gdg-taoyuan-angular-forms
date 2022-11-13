@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { map, filter } from 'rxjs/operators';
+import { map, filter, tap } from 'rxjs/operators';
 import { forbiddenNameValidator } from './forbidden-name.directive';
 
 interface LoginForm {
@@ -20,7 +20,7 @@ export class ReactiveFormComponent implements OnInit {
       Validators.minLength(4),
       forbiddenNameValidator(/admin/i)
     ]),
-    password: new FormControl('devfest', [
+    password: new FormControl('', [
       Validators.required,
       Validators.minLength(6)
     ])
@@ -48,6 +48,7 @@ export class ReactiveFormComponent implements OnInit {
   ngOnInit() {
     this.myForm.valueChanges
       .pipe(
+        filter((value) => !!value.account),
         map((value) => value.account.toUpperCase()),
         filter(() => this.myForm.valid)
       )
@@ -58,5 +59,22 @@ export class ReactiveFormComponent implements OnInit {
 
   submit() {
     console.log(this.myForm.value);
+  }
+
+  partialUpdate() {
+    this.myForm.patchValue({
+      account: 'GDG_Taoyuan'
+    });
+  }
+
+  fullUpdate() {
+    this.myForm.setValue({
+      account: 'GDG_Taoyuan',
+      password: 'devfest2022'
+    });
+  }
+
+  reset() {
+    this.myForm.reset();
   }
 }

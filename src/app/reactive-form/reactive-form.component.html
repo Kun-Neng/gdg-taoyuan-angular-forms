@@ -37,3 +37,9 @@
     </p>
   </form>
 </section>
+
+<div style="display: grid; grid-template-columns: auto auto auto; column-gap: 10px;">
+  <button type="button" (click)="partialUpdate()">Partial Update</button>
+  <button type="button" (click)="fullUpdate()">Full Update</button>
+  <button (click)="reset()">Cancel</button>
+</div>
