@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { forbiddenNameValidator } from './forbidden-name.directive';
 
 @Component({
@@ -8,16 +8,25 @@ import { forbiddenNameValidator } from './forbidden-name.directive';
   styleUrls: ['./reactive-form.component.css']
 })
 export class ReactiveFormComponent implements OnInit {
-  myForm = new FormGroup({
-    account: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-      forbiddenNameValidator(/admin/i)
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6)
-    ])
+  // myForm = new FormGroup({
+  //   account: new FormControl('', [
+  //     Validators.required,
+  //     Validators.minLength(4),
+  //     forbiddenNameValidator(/admin/i)
+  //   ]),
+  //   password: new FormControl('', [
+  //     Validators.required,
+  //     Validators.minLength(6)
+  //   ])
+  // });
+
+  myForm = this.fb.group({
+    account: ['', {
+      validators: [Validators.required, Validators.minLength(4), forbiddenNameValidator(/admin/i)]
+    }],
+    password:['', {
+      validators: [Validators.required, Validators.minLength(6)]
+    }]
   });
 
   get account() {
@@ -28,7 +37,7 @@ export class ReactiveFormComponent implements OnInit {
     return this.myForm.get('password');
   }
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() { }
 
