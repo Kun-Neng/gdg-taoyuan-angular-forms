@@ -6,6 +6,7 @@ import { forbiddenNameValidator } from './forbidden-name.directive';
 interface LoginForm {
   account: FormControl<string>;
   password: FormControl<string>;
+  // passwordConfirm: FormControl<string>;
 };
 
 @Component({
@@ -23,8 +24,14 @@ export class ReactiveFormComponent implements OnInit {
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6)
-    ])
-  });
+    ]),
+    // passwordConfirm: new FormControl('', Validators.minLength(6))
+  }/*, this.passwordMatchValidator*/);
+
+  // Create a form group with a group-level validator
+  private passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('passwordConfirm').value ? null : { 'mismatch': true };
+  }
 
   // myForm = this.fb.nonNullable.group({
   //   account: ['', {
@@ -70,7 +77,8 @@ export class ReactiveFormComponent implements OnInit {
   fullUpdate() {
     this.myForm.setValue({
       account: 'GDG_Taoyuan',
-      password: 'devfest2022'
+      password: 'devfest2022',
+      // passwordConfirm: 'devfest2022'
     });
   }
 
