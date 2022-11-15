@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { map, filter, tap } from 'rxjs/operators';
+import { map, filter, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { forbiddenNameValidator } from './forbidden-name.directive';
 
 interface LoginForm {
@@ -28,11 +28,6 @@ export class ReactiveFormComponent implements OnInit {
     // passwordConfirm: new FormControl('', Validators.minLength(6))
   }/*, this.passwordMatchValidator*/);
 
-  // Create a form group with a group-level validator
-  private passwordMatchValidator(g: FormGroup) {
-    return g.get('password').value === g.get('passwordConfirm').value ? null : { 'mismatch': true };
-  }
-
   // myForm = this.fb.nonNullable.group({
   //   account: ['', {
   //     validators: [Validators.required, Validators.minLength(4), forbiddenNameValidator(/admin/i)]
@@ -41,6 +36,8 @@ export class ReactiveFormComponent implements OnInit {
   //     validators: [Validators.required, Validators.minLength(6)]
   //   }]
   // });
+
+  passwordStrength = 0;
 
   get account() {
     return this.myForm.get('account');
@@ -62,6 +59,13 @@ export class ReactiveFormComponent implements OnInit {
       .subscribe((value) => {
         console.log(`Deal with valid form value: ${JSON.stringify(value)}`);
       });
+    
+    this.password.valueChanges.pipe(
+      debounceTime(400),
+      distinctUntilChanged()
+    ).subscribe(newValue => {
+      this.passwordStrength = newValue ? newValue.length : 0;
+    });
   }
 
   submit() {
@@ -84,5 +88,10 @@ export class ReactiveFormComponent implements OnInit {
 
   reset() {
     this.myForm.reset();
+  }
+
+  // Create a form group with a group-level validator
+  private passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('passwordConfirm').value ? null : { 'mismatch': true };
   }
 }
