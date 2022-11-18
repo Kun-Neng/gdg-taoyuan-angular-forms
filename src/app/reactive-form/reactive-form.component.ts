@@ -50,22 +50,20 @@ export class ReactiveFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.myForm.valueChanges
-      .pipe(
+    this.myForm.valueChanges.pipe(
         filter((value) => !!value.account),
         map((value) => value.account.toUpperCase()),
         filter(() => this.myForm.valid)
-      )
-      .subscribe((value) => {
-        console.log(`Deal with valid form value: ${JSON.stringify(value)}`);
+      ).subscribe((value) => {
+        console.log(`Valid account: ${JSON.stringify(value)}`);
       });
     
     this.password.valueChanges.pipe(
-      debounceTime(400),
-      distinctUntilChanged()
-    ).subscribe(newValue => {
-      this.passwordStrength = newValue ? newValue.length : 0;
-    });
+        debounceTime(400),
+        distinctUntilChanged()
+      ).subscribe(newValue => {
+        this.passwordStrength = newValue ? newValue.length : 0;
+      });
   }
 
   submit() {

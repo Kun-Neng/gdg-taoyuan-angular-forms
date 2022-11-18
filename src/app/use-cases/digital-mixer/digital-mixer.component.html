@@ -1,4 +1,5 @@
 <div class="container">
+  <h3>myForm</h3>
   <form [formGroup]="myForm">
     <div class="tuner">
       #1<input type="range" formControlName="first">
@@ -17,6 +18,17 @@
     </div>
     <div class="tuner">
       #6<input type="range" formControlName="sixth">
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  <h3>myNewForm</h3>
+  <form [formGroup]="myNewForm">
+    <div formArrayName="mixers">
+      <div *ngFor="let mixerControl of mixersArray.controls; index as i" class="tuner">
+        #{{i}}<input type="range" [formControlName]="i">
+      </div>
     </div>
   </form>
 </div>
