@@ -1,0 +1,7 @@
+<form [formGroup]="form">
+  <div class="tuner">
+    <span>{{index}}</span>
+    <input class="slider" type="range" formControlName="sliderValue" [value]="form.value.sliderValue" />
+    <input class="inputText" type="number" formControlName="sliderValue"  [value]="form.value.sliderValue" />
+  </div>
+</form>
