@@ -15,7 +15,8 @@ export class DigitalMixerComponent implements OnInit, OnDestroy {
     third: new FormControl<number>(40),
     fourth: new FormControl<number>(80),
     fifth: new FormControl<number>(30),
-    sixth: new FormControl<number>(70)
+    sixth: new FormControl<number>(70),
+    cvaSlider: new FormControl<number>(31)
   });
     
   mixersArray = new FormArray<FormControl<number>>([]);
