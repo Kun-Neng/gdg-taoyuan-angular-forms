@@ -1,0 +1,18 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.form-field {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.form-field > small {
+  color: red;
+  font-size: 0.8rem;
+  font-weight: bold;
+}

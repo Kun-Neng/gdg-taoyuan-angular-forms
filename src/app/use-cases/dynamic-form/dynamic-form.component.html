@@ -1,0 +1,20 @@
+<h2>Dynamic Form</h2>
+<form [formGroup]="dynamicForm" (ngSubmit)="submit()">
+  <div class="form-container">
+    <div *ngFor="let field of fields" class="form-field">
+      <label [attr.for]="field.name">{{ field.label }}</label>
+      <input
+        [attr.id]="field.name"
+        [attr.name]="field.name"
+        [attr.type]="field.type"
+        [attr.placeholder]="field.label"
+        [formControlName]="field.name"
+      />
+      <ng-container *ngIf="dynamicForm.get(field.name).invalid && dynamicForm.get(field.name).touched">
+        <small *ngIf="dynamicForm.get(field.name).errors.required">Field is required.</small>
+      </ng-container>
+    </div>
+  </div>
+
+  <button type="submit">Submit</button>
+</form>

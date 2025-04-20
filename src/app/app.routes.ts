@@ -10,6 +10,10 @@ export const routes: Routes = [
     loadComponent: () => import('./reactive-form/reactive-form.component').then(m => m.ReactiveFormComponent)
   },
   {
+    path: 'dynamic-form',
+    loadComponent: () => import('./use-cases/dynamic-form/dynamic-form.component').then(m => m.DynamicFormComponent)
+  },
+  {
     path: 'digital-mixer',
     loadComponent: () => import('./use-cases/digital-mixer/digital-mixer.component').then(m => m.DigitalMixerComponent)
   },
