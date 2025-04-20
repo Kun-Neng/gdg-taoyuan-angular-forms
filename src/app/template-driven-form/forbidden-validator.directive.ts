@@ -1,6 +1,6 @@
 import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@angular/forms';
-import { forbiddenNameValidator } from '../reactive-form/forbidden-name.directive';
+import { forbiddenNameValidator } from './forbidden-name.directive';
 
 @Directive({
   selector: '[appForbiddenName]',

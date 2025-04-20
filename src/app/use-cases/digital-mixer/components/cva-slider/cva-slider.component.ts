@@ -1,9 +1,10 @@
 import { Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-cva-slider',
+  imports: [ReactiveFormsModule],
   templateUrl: './cva-slider.component.html',
   styleUrls: ['./cva-slider.component.css'],
   providers: [{

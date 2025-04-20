@@ -1,9 +1,10 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-slider',
+  imports: [ReactiveFormsModule],
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.css']
 })

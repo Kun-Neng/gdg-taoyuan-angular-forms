@@ -1,9 +1,13 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { NgFor } from '@angular/common';
+import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { SliderComponent } from './components/slider/slider.component';
+import { CvaSliderComponent } from './components/cva-slider/cva-slider.component';
 
 @Component({
   selector: 'app-digital-mixer',
+  imports: [ReactiveFormsModule, NgFor, SliderComponent, CvaSliderComponent],
   templateUrl: './digital-mixer.component.html',
   styleUrls: ['./digital-mixer.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

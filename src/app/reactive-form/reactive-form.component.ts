@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { map, filter, tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { forbiddenNameValidator } from './forbidden-name.directive';
 
@@ -11,6 +12,7 @@ interface LoginForm {
 
 @Component({
   selector: 'app-reactive-form',
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './reactive-form.component.html',
   styleUrls: ['./reactive-form.component.css']
 })
