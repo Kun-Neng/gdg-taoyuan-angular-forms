@@ -3,7 +3,7 @@
   <form [formGroup]="myForm" (ngSubmit)="submit()">
     <p>
       <label>Account:</label>
-      <input type="text" formControlName="account" required>
+      <input type="text" autocomplete="username" formControlName="account" />
     </p>
     
     <div *ngIf="account.invalid && (account.dirty || account.touched)" class="alert">
@@ -20,7 +20,7 @@
 
     <p>
       <label>Password:</label>
-      <input type="password" formControlName="password" required>
+      <input type="password" autocomplete="current-password" formControlName="password" />
     </p>
 
     <!-- <div *ngIf="password.dirty">Password Strength: {{ passwordStrength }}</div> -->
@@ -35,7 +35,7 @@
 
     <!-- <p>
       <label>Confirm Password:</label>
-      <input type="password" formControlName="passwordConfirm" required>
+      <input type="password" autocomplete="current-password" formControlName="passwordConfirm" required />
     </p> -->
 
     <p>

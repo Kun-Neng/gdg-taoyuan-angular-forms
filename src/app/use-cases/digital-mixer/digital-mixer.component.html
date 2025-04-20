@@ -3,12 +3,12 @@
   <div>using FormControl and component</div>
   <form [formGroup]="myForm">
     <div class="container">
-      <div class="tuner">#1<input type="range" formControlName="first"></div>
-      <div class="tuner">#2<input type="range" formControlName="second"></div>
-      <div class="tuner">#3<input type="range" formControlName="third"></div>
-      <div class="tuner">#4<input type="range" formControlName="fourth"></div>
-      <div class="tuner">#5<input type="range" formControlName="fifth"></div>
-      <div class="tuner">#6<input type="range" formControlName="sixth"></div>
+      <div class="tuner">#1<input type="range" formControlName="first" /></div>
+      <div class="tuner">#2<input type="range" formControlName="second" /></div>
+      <div class="tuner">#3<input type="range" formControlName="third" /></div>
+      <div class="tuner">#4<input type="range" formControlName="fourth" /></div>
+      <div class="tuner">#5<input type="range" formControlName="fifth" /></div>
+      <div class="tuner">#6<input type="range" formControlName="sixth" /></div>
       <div class="tuner">
         <app-slider index="#7"></app-slider>
       </div>
@@ -26,7 +26,7 @@
     <div class="container">
       <div formArrayName="mixers">
         <div *ngFor="let mixerControl of mixersArray.controls; index as i" class="tuner">
-          #{{i}}<input type="range" [formControlName]="i">
+          #{{i}}<input type="range" [formControlName]="i" />
         </div>
       </div>
     </div>

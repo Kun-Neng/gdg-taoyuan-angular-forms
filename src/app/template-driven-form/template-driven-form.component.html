@@ -3,12 +3,12 @@
   <form #myForm="ngForm" (ngSubmit)="submit()">
     <p>
       <label>Account:</label>
-      <input type="text" [(ngModel)]="user.account" name="account" required minlength="4" appForbiddenName="admin" #account="ngModel">
+      <input type="text" [(ngModel)]="user.account" name="account" autocomplete="username" required minlength="4" appForbiddenName="admin" #account="ngModel" />
     </p>
 
     <p>
       <label>Password:</label>
-      <input type="password" [(ngModel)]="user.password" name="password" required minlength="6">
+      <input type="password" [(ngModel)]="user.password" name="password" autocomplete="current-password" required minlength="6" />
     </p>
     
     <p>
