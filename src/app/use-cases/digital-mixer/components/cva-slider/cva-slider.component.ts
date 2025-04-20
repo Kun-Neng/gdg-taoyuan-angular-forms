@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, forwardRef, inject } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -15,6 +15,8 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class CvaSliderComponent implements OnInit, OnDestroy, ControlValueAccessor {
   @Input() index: string = '';
+
+  builder = inject(FormBuilder);
 
   form = this.builder.nonNullable.group({
     sliderValue: this.builder.nonNullable.control(41)
@@ -37,8 +39,6 @@ export class CvaSliderComponent implements OnInit, OnDestroy, ControlValueAccess
   }
 
   private _destroy$ = new Subject<void>();
-
-  constructor(private builder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form.get('sliderValue').valueChanges.pipe(

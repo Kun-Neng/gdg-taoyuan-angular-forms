@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -11,13 +11,13 @@ import { Subject, takeUntil } from 'rxjs';
 export class SliderComponent implements OnInit, OnDestroy {
   @Input() index: string = '';
 
+  builder = inject(FormBuilder);
+
   form = this.builder.nonNullable.group({
     sliderValue: this.builder.nonNullable.control(41)
   });
 
   private _destroy$ = new Subject<void>();
-
-  constructor(private builder: FormBuilder) { }
 
   ngOnInit(): void {
     this.form.get('sliderValue').valueChanges.pipe(
