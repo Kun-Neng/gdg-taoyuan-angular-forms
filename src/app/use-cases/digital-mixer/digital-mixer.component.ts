@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { SliderComponent } from './components/slider/slider.component';
 import { CvaSliderComponent } from './components/cva-slider/cva-slider.component';
 
@@ -28,10 +28,7 @@ export class DigitalMixerComponent implements OnInit, OnDestroy {
     mixers: this.mixersArray
   });
 
-  private myFormSubscription!: Subscription;
-  private myNewFormSubscription!: Subscription;
-
-  constructor() { }
+  private _destroy$ = new Subject<void>();
 
   ngOnInit() {
     const mixerValues = [20, 50, 40, 80, 30, 70];
@@ -39,19 +36,23 @@ export class DigitalMixerComponent implements OnInit, OnDestroy {
       this.mixersArray.push(new FormControl(value));
     });
 
-    this.myFormSubscription = this.myForm.valueChanges.subscribe(values => {
+    this.myForm.valueChanges.pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(values => {
       console.log('myForm');
       console.table(values);
     });
 
-    this.myNewFormSubscription = this.myNewForm.valueChanges.subscribe(values => {
+    this.myNewForm.valueChanges.pipe(
+      takeUntil(this._destroy$)
+    ).subscribe(values => {
       console.log('myNewForm');
       console.table(values);
     });
   }
 
   ngOnDestroy() {
-    this.myFormSubscription?.unsubscribe();
-    this.myNewFormSubscription?.unsubscribe();
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 }

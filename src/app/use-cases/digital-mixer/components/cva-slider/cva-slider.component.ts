@@ -33,7 +33,7 @@ export class CvaSliderComponent implements OnInit, OnDestroy, ControlValueAccess
     this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
   private _destroy$ = new Subject<void>();
